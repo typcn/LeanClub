@@ -1,0 +1,133 @@
+<html lang="zh-CN">
+<head>
+	<title>{{title}}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#00CCFF">
+	<meta name="google-site-verification" content="IPHG0JLncYiFHvVPpRE4Pgl6a0HajVjbEV_Q65VgmB0" />
+	<script>var ver="{{version}}";var allowAjax=true;</script>
+
+	<!--[if lte IE 8]><script src="/static/css/ie/html5shiv.js"></script><![endif]-->
+	<script src="/static/js/init.js?v={{version}}"></script>
+
+	<link rel="apple-touch-icon" href="/static/images/icon/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/static/images/icon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/static/images/icon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/images/icon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/images/icon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="/static/images/icon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/static/images/icon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="/static/images/icon/apple-touch-icon-152x152.png" />
+
+	<noscript>
+		<link rel="stylesheet" href="/static/css/skel.css" />
+		<link rel="stylesheet" href="/static/css/style.css" />
+		<link rel="stylesheet" href="/static/css/style-xlarge.css" />
+	</noscript>
+	<!--[if lte IE 9]><link rel="stylesheet" href="/static/css/ie/v9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/static/css/ie/v8.css" /><![endif]-->
+	{{header}}
+</head>
+<body>
+	<header id="header" class="skel-layers-fixed">
+		<h1 id="logo"><a href="/">LeanClub</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="/">首页</a></li>
+				<li><a id="search_btn" href="javascript:;">搜索</a></li>
+				<li><a id="login" href="javascript:;" class="button special">登录</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div id="main" class="wrapper style1">
+		<div class="container">
+			<header class="major">
+				<h2>首页</h2>
+			</header>
+			<div class="row 150%">
+				<div class="8u 12u$(medium)">
+					<section id="content">
+						<div class="topiclist-wrapper">
+							{{#topics}}
+							<div class="topic" data-postid="{{_id}}" data-user="{{user}}">
+								<img class="avatar" src="/static/images/loading.png" data-echo="/info/avatar/{{user}}">
+								<ul>
+									<li class="title"><a class="topicLink" href="/topic/{{_id}}" data-postid="{{_id}}">{{title}}</a></li>
+									<li class="info">
+										<i class="icon icon-briefcase"></i> <a class="category" href="/node/{{categoryurl}}/1">{{categoryname}}</a>
+										<i class="icon icon-user">	   </i> <a class="user" href="/user/name/{{user}}">{{user}}</a>
+										<i class="icon icon-calendar"> </i> <span class="time" data-time="{{createAt}}"></span>
+										<i class="icon icon-comment">  </i> <span class="timefromnow" data-time="{{lastReply}}"></span>
+									</li>
+								</ul>
+								<span class="right">
+									<span class="replys">{{replynum}}</span>
+								</span>
+							</div>
+							{{/topics}}
+						</div>
+						<div class="row">
+							<div class="6u 12u$(xsmall)">
+								<a href="javascript:$('#logo').click()" class="button fit">刷新</a>
+							</div>
+							<div class="6u$ 12u$(xsmall)">
+								<a id="nextpage" href="/page/2" class="button fit">下一页</a>
+							</div>
+						</div>
+					</section>
+
+				</div>
+				<div class="4u$ 12u$(medium)">
+					<section id="sidebar">
+						<section id="userinfo">
+							<h3>用户信息</h3>
+							<p><img id="u_avatar" class="avatar" src="/static/images/loading.png"> <span id="u_name" style="margin-left:1em;">Loading</span></p>
+							<footer>
+								<ul class="actions" style="margin-bottom:0.5em">
+									<li><a href="/post/new" class="button">发表主题</a></li>
+									<li><a href="/settings" class="button">修改设置</a></li>
+								</ul>
+								<ul class="actions">
+									<li><a id="view_noti" href="/notifications" class="button">查看提醒</a></li>
+									<li><a href="javascript:localStorage.removeItem('user');window.location.href='/'" class="button">注销登录</a></li>
+								</ul>
+							</footer>
+						</section>
+						<hr />
+						<section class="menu">
+							<!--<a class="menu-item selected" href="/hot">热门</a>-->
+							<a class="menu-item selected" href="/">最新</a>
+							{{{categorynav}}}
+						</section>
+						<hr />
+					</section>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<footer id="footer">
+		<script type="text/javascript" src="/static/js/main.js?v={{version}}" async></script>
+		<div id="overlay" style="display:none"></div>
+		<div id="overlay-window" style="display:none"></div>
+		<div id="search-overlay" style="display:none"><h3>搜索</h3><div id="search-field"><center><input type="text" class="st-default-search-input"></center></div><div id="search-result" class="st-search-container"></div></div>
+		<div id="preloader"><div id="preloaderSpinner" class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><p id="preloadtext">正在初始化页面</p></div>
+		{{footer}}
+		<ul>
+			<li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/faq">FAQ</a></li>
+		</ul>
+		<ul>
+			<li>Version: {{version}}</li>
+			<li>Online: <span id="onlinecount">{{online}}</span></li>
+			<li>Time: <span id="gentime">{{time}}</span>s</li>
+		</ul>
+		<ul class="copyright">
+			<li>© 2015 LeanClub. All rights reserved.</li>
+		</ul>
+		
+	</footer>
+</body>
+</html>

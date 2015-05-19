@@ -1,0 +1,103 @@
+<html lang="zh-CN">
+<head>
+	<title>{{username}} 的信息</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#00CCFF">
+	<meta class='swiftype' name='title' data-type='string' content='{{topic_title}}' />
+	<script>var ver="{{version}}"</script>
+
+	<!--[if lte IE 8]><script src="/static/css/ie/html5shiv.js"></script><![endif]-->
+	<script src="/static/js/init.js?v={{version}}"></script>
+
+	<link rel="apple-touch-icon" href="/static/images/icon/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/static/images/icon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/static/images/icon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/images/icon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/images/icon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="/static/images/icon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/static/images/icon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="/static/images/icon/apple-touch-icon-152x152.png" />
+
+	<noscript>
+		<link rel="stylesheet" href="/static/css/skel.css" />
+		<link rel="stylesheet" href="/static/css/style.css" />
+		<link rel="stylesheet" href="/static/css/style-xlarge.css" />
+	</noscript>
+	<!--[if lte IE 9]><link rel="stylesheet" href="/static/css/ie/v9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/static/css/ie/v8.css" /><![endif]-->
+	{{header}}
+</head>
+<body>
+	<header id="header" class="skel-layers-fixed">
+		<h1 id="logo"><a href="/">LeanClub</a></h1>
+		<nav id="nav">
+			<ul>
+				<li><a href="/">首页</a></li>
+				<li><a id="search_btn" href="javascript:;">搜索</a></li>
+				<li><a id="login" href="javascript:;" class="button special">登录</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div id="main" class="wrapper style1">
+		<div class="container">
+			<header id="post-header" class="major">
+				<h2>{{username}}</h2>
+			</header>
+			<div class="row 150%">
+				<section id="content" style="width:100%">
+					<div class="table-wrapper">
+						<table class="alt">
+							<tbody>
+								<tr>
+									<td>用户 ID</td>
+									<td>{{uid}}</td>
+								</tr>
+								<tr>
+									<td>注册时间</td>
+									<td><span class="time" data-time="{{regTime}}"></td>
+								</tr>
+								<tr>
+									<td>积分</td>
+									<td>{{points}}</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="1"></td>
+									<td>更多细节开发中</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</section>
+			</div>
+
+		</div>
+	</div>
+
+	<footer id="footer">
+		<script type="text/javascript" src="/static/js/main.js?v={{version}}" async></script>
+		<script type="text/javascript" src="/static/js/marked.js?v={{version}}" async></script>
+		<div id="overlay" style="display:none"></div>
+		<div id="overlay-window" style="display:none"></div>
+		<div id="search-overlay" style="display:none"><h3>搜索</h3><div id="search-field"><center><input type="text" class="st-default-search-input"></center></div><div id="search-result" class="st-search-container"></div></div>
+		<div id="preloader"><div id="preloaderSpinner" class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><p id="preloadtext">正在初始化页面</p></div>
+
+		{{footer}}
+		<ul>
+			<li><a href="/about">About</a></li><li><a href="/privacy">Privacy Policy</a></li><li><a href="/faq">FAQ</a></li>
+		</ul>
+		<ul>
+			<li>Version: {{version}}</li>
+			<li>Online: <span id="onlinecount">{{online}}</span></li>
+			<li>Time: <span id="gentime">{{time}}</span>s</li>
+		</ul>
+		<ul class="copyright">
+			<li>© 2015 LeanClub. All rights reserved.</li>
+		</ul>
+		
+	</footer>
+</body>
+</html>

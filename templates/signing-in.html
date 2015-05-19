@@ -1,0 +1,84 @@
+<html>
+<head>
+	<title>正在登录</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#00CCFF">
+	<script>var ver="{{version}}"</script>
+	
+	<!--[if lte IE 8]><script src="/static/css/ie/html5shiv.js"></script><![endif]-->
+	<script src="/static/js/init.js?v={{version}}"></script>
+
+	<link rel="apple-touch-icon" href="/static/images/icon/apple-touch-icon.png" />
+	<link rel="apple-touch-icon" sizes="57x57" href="/static/images/icon/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/static/images/icon/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/static/images/icon/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/static/images/icon/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="120x120" href="/static/images/icon/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/static/images/icon/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="152x152" href="/static/images/icon/apple-touch-icon-152x152.png" />
+
+	<noscript>
+		<link rel="stylesheet" href="/static/css/skel.css" />
+		<link rel="stylesheet" href="/static/css/style.css" />
+		<link rel="stylesheet" href="/static/css/style-xlarge.css" />
+	</noscript>
+	<!--[if lte IE 9]><link rel="stylesheet" href="/static/css/ie/v9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="/static/css/ie/v8.css" /><![endif]-->
+	{{header}}
+</head>
+<body>
+	<header id="header" class="skel-layers-fixed">
+		<h1 id="logo"><a href="/">LeanClub</a></h1>
+	</header>
+
+	<div id="main" class="wrapper style1">
+		<div class="container">
+			<header class="major">
+				<h2 id="t">
+					<div class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div>
+					<br>正在登录，可能需要较长时间
+				</h2>
+			</header>
+		</div>
+	</div>
+
+	<style>
+	header.major:after{ display: none }
+	</style>
+
+	<footer id="footer">
+		<div id="overlay" style="display:none"></div>
+		<div id="overlay-window" style="display:none"></div>
+		<div id="preloader"><div id="preloaderSpinner" class="spinner"><div class="rect1"></div><div class="rect2"></div><div class="rect3"></div><div class="rect4"></div><div class="rect5"></div></div><p id="preloadtext">正在初始化页面</p></div>
+		<div id="search-overlay" style="display:none"><h3>搜索</h3><div id="search-field"><center><input type="text" class="st-default-search-input"></center></div><div id="search-result" class="st-search-container"></div></div>
+		{{footer}}
+		<ul class="copyright">
+			<li>© 2015 LeanClub. All rights reserved.</li>
+		</ul>
+		<script type="text/javascript" src="/static/js/main.js?v={{version}}"></script>
+		<script>
+			showPreloader("等待服务器响应");
+			qwest.get(window.location.href.replace("#","") + "&do=1",null,{"timeout":10000}).then(function(result) {
+				hidePreloader("请求完毕");
+			  if(result){
+			  	var json = result;
+			  	if(json.error == 0){
+			  		if(!localStorage){
+			  			$("#t").innerHTML = "您的浏览器不支持 localStorage<br>请更换更新的浏览器";
+			  		}else{
+			  			$("#t").innerHTML = "登录成功";
+			  			localStorage.setItem("user",JSON.stringify(json.result));
+			  			window.location = "/";
+			  		}
+			  	}else{
+			  		$("#t").innerHTML = json.msg;
+			  	}
+			  }
+			}).catch(function(e,url) {
+				$("#t").innerHTML = "连接服务器超时，请刷新重试";
+			})
+		</script>
+	</footer>
+</body>
+</html>

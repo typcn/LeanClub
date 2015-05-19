@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: redis3m
+URL: https://github.com/luca3m/redis3m
+Description: C++ Redis client
+Version: @REDIS3M_VERSION_STRING@
+Libs: -L${libdir} -lredis3m
+Libs.private: -lhiredis -lboost_system -lboost_date_time -lboost_regex
+Cflags: -I${includedir}

@@ -1,0 +1,76 @@
+<header id="post-header" class="major">
+	<h2>{{title}}</h2>
+</header>
+<div class="row 150%">
+	<div class="8u 12u$(medium)">
+		<section id="content">
+			<div class="post-wrapper" data-swiftype-index='true'>
+				<div class="post" id="L1">
+					<img class="avatar" src="/static/images/loading.png" data-echo="/info/avatar/{{user}}">
+					<ul>
+						<li class="header"><a href="/user/name/{{user}}">{{user}}</a> · 楼主 · <span class="timefromnow" data-time="{{createAt}}"></span></li>
+						{{#content}}
+						<li class="content">
+							{{{.}}}
+						</li>
+						{{/content}}
+					</ul>
+				</div>
+				{{#replies}}
+				<div class="post" id="L{{floor}}">
+					<img class="avatar" src="/static/images/loading.png" data-echo="/info/avatar/{{user}}">
+					<ul>
+						<li class="header" data-floor="{{floor}}"><a href="/user/name/{{user}}">{{user}}</a> · {{floor}} 楼 · <span class="timefromnow" data-time="{{createAt}}"></span> · <a href="javascript:;" class="atreply">引用</a></li>
+						<li class="content">
+							{{{content}}}
+						</li>
+					</ul>
+				</div>
+				{{/replies}}
+			</div>
+		</section>
+		<section id="reply">
+			<textarea id="replyContent" placeholder="回复主题" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="autogrow(this);"></textarea>
+			<ul class="actions">
+				<li><input id="sendReply" type="button" value="发送" class="special"></li>
+				<li><a target="_blank" href="https://help.github.com/articles/github-flavored-markdown/" rel="nofollow" class="button"><img src="/static/images/markdown.svg"></a></li>
+			</ul>
+		</section>
+	</div>
+	<div class="4u$ 12u$(medium)">
+		<section id="sidebar">
+			<section id="topic_info">
+				<h3>主题信息</h3>
+				<p>创建时间: <span class="time" data-time="{{createAt}}"></span></p>
+				<p>创建用户: {{user}}</p>
+				<p>所在分类: <a class="category" href="/node/{{categoryurl}}/1">{{categoryname}}</a></p>
+				<p>回复数量: {{reply_num}}</p>
+				<p>编辑次数: <span id="edit_times">{{edit_times}}</span></p>
+				<p>最后回复: <span class="timefromnow" data-time="{{lastReply}}"></span></p>
+				<footer>
+					<ul class="actions">
+						<li><a id="edit_history" href="#" class="button">查看编辑历史</a></li>
+					</ul>
+				</footer>
+			</section>
+			<section id="userinfo">
+				<h3>用户信息</h3>
+				<p><img id="u_avatar" class="avatar" src="/static/images/loading.png"> <span id="u_name" style="margin-left:1em;">Loading</span></p>
+				<footer>
+					<ul class="actions" style="margin-bottom:0.5em">
+						<li><a href="/post/new" class="button">发表主题</a></li>
+						<li><a href="/settings" class="button">修改设置</a></li>
+					</ul>
+					<ul class="actions">
+						<li><a id="view_noti" href="/notifications" class="button">查看提醒</a></li>
+						<li><a href="javascript:localStorage.removeItem('user');window.location.href='/'" class="button">注销登录</a></li>
+					</ul>
+				</footer>
+			</section>
+			<section class="menu" style="display:none">
+				{{{categorynav}}}
+			</section>
+		</section>
+
+	</div>
+</div>
