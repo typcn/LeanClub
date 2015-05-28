@@ -325,14 +325,17 @@ function signedBind(){
     if(info){
       var json = JSON.parse(info);
       if($("#u_avatar")){
+         qwest.get("/api/notification/count").then(function(r){
+          $("#view_noti").innerHTML = r + "条提醒";
+         }).catch(function(){
+          localStorage.removeItem('user');
+          window.location.href = window.location.href;
+         });
          $("#u_avatar").setAttribute("src",json.avatar);
         if(json.regTime){
           json.username = "请点击设置修改用户名";
         }
          $("#u_name").innerHTML = json.username;
-         qwest.get("/api/notification/count").then(function(r){
-          $("#view_noti").innerHTML = r + "条提醒";
-         }).catch(function(){});
       }
       var el = $("#login");
       el.innerHTML = "注销";
@@ -542,14 +545,13 @@ function enableTopicAjax(){
   })
 }
 
-var state = {title:document.title,content:$("#main").innerHTML,header:$("#header").innerHTML};
-window.history.pushState(state,document.title,window.location.href);
-
 /* AJAX BIND */
 if(typeof allowAjax != "undefined"){
   if(!history.pushState){
     hidePreloader("您的浏览器不支持 pushState 请升级");
   }else{
+    var state = {title:document.title,content:$("#main").innerHTML,header:$("#header").innerHTML};
+    window.history.pushState(state,document.title,window.location.href);
     enableTopicAjax();
     enableIndexAjax();
     enableMenuAjax();
