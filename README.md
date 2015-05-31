@@ -37,6 +37,9 @@ DEMO: https://leanclub.org/
 	cmake ..
 	make
 	./leanclub
+### Nginx
+        reverse proxy,and static folder.
+
 # About
 This program based on: [Crow](https://github.com/ipkn/crow)
 
