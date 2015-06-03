@@ -13,8 +13,8 @@ install:
   - sudo apt-get install cmake libboost1.55-all-dev libmsgpack-dev
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
-  - git clone https://github.com/redis/hiredis.git && cd hiredis && make && sudo make install
-  - git clone https://github.com/luca3m/redis3m && cd redis3m && cmake . && make && sudo make install
+  - git clone https://github.com/redis/hiredis.git && cd hiredis && make && sudo make install && cd ..
+  - git clone https://github.com/luca3m/redis3m && cd redis3m && cmake . && make && sudo make install && cd ..
 script:
   - cp src/config.h.example.h src/config.h
   - mkdir Build
