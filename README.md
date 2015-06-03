@@ -1,4 +1,6 @@
 # LeanClub
+[![Build Status](https://travis-ci.org/typcn/LeanClub.svg?branch=master)](https://travis-ci.org/typcn/LeanClub)
+
 High performance C++ forum system
 
 WARNING: Not recommended for production
