@@ -1,0 +1,22 @@
+language: cpp
+
+compiler:
+  - gcc
+
+before_install:
+  # g++4.8.1
+  - if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
+  - sudo apt-get update -qq
+
+install:
+  - sudo apt-get install build-essential cmake libcurl4-nss-dev libboost-all-dev redis-server libtcmalloc-minimal4 && sudo ln -s /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so
+  - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8; fi
+  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+  - git clone https://github.com/redis/hiredis.git && cd hiredis && make && sudo make install
+  - git clone https://github.com/luca3m/redis3m && cd redis3m && cmake . && make && sudo make install
+script:
+  - cp src/config.h.example.h src/config.h
+  - mkdir Build
+  - cd Build
+  - cmake ..
+  - make
