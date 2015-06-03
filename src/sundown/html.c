@@ -59,6 +59,19 @@ bool StartsWith(const char *a, const char *b)
     return 0;
 }
 
+char* subString (const char* input, int offset, int len, char* dest)
+{
+    int input_len = strlen (input);
+    
+    if (offset + len > input_len)
+    {
+        return NULL;
+    }
+    
+    strncpy (dest, input + offset, len);
+    return dest;
+}
+
 /********************
  * GENERIC RENDERER *
  ********************/
@@ -241,10 +254,32 @@ rndr_link(hoedown_buffer *ob, const hoedown_buffer *content, const hoedown_buffe
 	hoedown_html_renderer_state *state = data->opaque;
     if (!link || !link->size) return 0;
     
-    if(StartsWith(link->data, "#")){
+    const char* linkdata = (const char*)link->data;
+    
+    if(StartsWith(linkdata, "#")){
         HOEDOWN_BUFPUTSL(ob, "<a class=\"floorLink\" href=\"");
+    }else if(StartsWith(linkdata, "tmusic:")){
+        HOEDOWN_BUFPUTSL(ob, "<iframe frameborder=\"0\" onload=\"resizeFrame(this)\"allowtransparency=\"true\" allowfullscreen=\"true\" src=\"https://storage.typcn.com/player/music.html?id=");
+        int len = link->size - 7;
+        char dest[len+1];
+        subString (linkdata, 7, len, dest);
+        dest[len+1] = '\0';
+        const char *targetid = &dest[0];
+        escape_href(ob, targetid, strlen(dest));
+        HOEDOWN_BUFPUTSL(ob, "\"></iframe>");
+        return 1;
+    }else if(StartsWith(linkdata, "tvideo:")){
+        HOEDOWN_BUFPUTSL(ob, "<iframe frameborder=\"0\" onload=\"resizeFrame(this)\"allowtransparency=\"true\" allowfullscreen=\"true\" src=\"https://storage.typcn.com/player/video.html?id=");
+        int len = link->size - 7;
+        char dest[len+1];
+        subString (linkdata, 7, len, dest);
+        dest[len+1] = '\0';
+        const char *targetid = &dest[0];
+        escape_href(ob, targetid, strlen(dest));
+        HOEDOWN_BUFPUTSL(ob, "\"></iframe>");
+        return 1;
     }else{
-        if(!StartsWith(link->data, "http")){
+        if(!StartsWith(linkdata, "http")){
             return 0;
         }
         HOEDOWN_BUFPUTSL(ob, "<a target=\"_blank\" href=\"");
