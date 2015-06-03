@@ -700,7 +700,7 @@
 
 	ul {
 		list-style: disc;
-		margin: 0 0 2em 0;
+		margin: 0 0 1em 0;
 		padding-left: 1em;
 	}
 
@@ -1804,9 +1804,45 @@
 	font-size: 130%;
 }
 
+@media screen and (min-width: 1680px){
+	.topic .title{
+		font-size: 110%;
+		padding-top: 1px;
+	}
+	.topic .info{
+		font-size: 90%;
+		margin-top: 15px;
+	}
+	ul li{
+		line-height: 1em;
+	}
+	.topic .avatar{
+		margin-top: 0;
+	}
+	.post .avatar{
+		margin-top: 0;
+	}
+	ul {
+	  margin: 0 0 1.5em 0;
+	}
+	.post ul li{
+	  margin-top: 8px;
+	  line-height: 1em;
+	}
+	.post .header{
+	  font-size: 60% !important;
+	}
+	.post .content{
+		margin-top: 15px;
+	}
+	.content p{
+	  font-size: 90% !important;
+	}
+}
+
 .topic ul , .post ul{
 	list-style: none;
-	margin-left: 45px;
+	margin-left: 40px;
 }
 
 .topic a , #post-header a ,.header a{
@@ -1833,8 +1869,8 @@
 	vertical-align: middle;
 	border-radius: 3px;
 	border: 1px solid #e5e5e5;
-	width:60px;
-	height:60px;
+	width: 55px;
+	height: 55px;
 }
 
 div.st-ui-autocomplete div.st-query-present, section.st-ui-slide-autocomplete div.st-query-present{
