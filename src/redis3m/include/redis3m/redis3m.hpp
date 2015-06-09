@@ -8,4 +8,4 @@
 #include <redis3m/command.h>
 #include <redis3m/connection_pool.h>
 #include <redis3m/simple_pool.h>
-#include <redis3m/cluster_pool.h>
+#include <src/redis3m/include/redis3m/cluster_pool.h>
