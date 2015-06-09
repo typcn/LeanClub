@@ -1,0 +1,1 @@
+curl -d @database_name.json -H "Content-type: application/json" -X POST http://DATABASE_URL/[database_name]/_bulk_docs
