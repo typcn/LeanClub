@@ -4,9 +4,9 @@
 #pragma once
 
 #include <string>
-#include <redis3m/utils/exception.h>
-#include <redis3m/utils/noncopyable.h>
-#include <redis3m/reply.h>
+#include "utils/exception.h"
+#include "utils/noncopyable.h"
+#include "reply.h"
 #include <vector>
 #include <memory>
 

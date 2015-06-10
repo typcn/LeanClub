@@ -1,12 +1,12 @@
 #pragma once
 
-#include <redis3m/utils/noncopyable.h>
+#include "utils/noncopyable.h"
 #include <memory>
 #include <string>
 #include <vector>
-#include <redis3m/reply.h>
-#include <redis3m/connection.h>
-#include <redis3m/utils/pool.h>
+#include "reply.h"
+#include "connection.h"
+#include "utils/pool.h"
 #include <map>
 #include <mutex>
 #include <set>

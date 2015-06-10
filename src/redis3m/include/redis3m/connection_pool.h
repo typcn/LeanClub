@@ -5,11 +5,11 @@
 
 #include <string>
 #include <set>
-#include <redis3m/connection.h>
+#include "connection.h"
 #include <memory>
 #include <mutex>
-#include <redis3m/utils/exception.h>
-#include <redis3m/utils/noncopyable.h>
+#include "utils/exception.h"
+#include "utils/noncopyable.h"
 
 namespace redis3m {
     REDIS3M_EXCEPTION(cannot_find_sentinel)

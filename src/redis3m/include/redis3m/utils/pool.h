@@ -3,7 +3,7 @@
 #include <mutex>
 #include <functional>
 #include <forward_list>
-#include <redis3m/utils/noncopyable.h>
+#include "noncopyable.h"
 
 namespace redis3m
 {

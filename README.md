@@ -27,7 +27,7 @@ DEMO: https://leanclub.org/
 
 ### Environment
 1. ```apt-get install build-essential cmake libcurl4-nss-dev libboost-all-dev redis-server libtcmalloc-minimal4 && sudo ln -s /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so```
-2. Install [hiredis](https://github.com/redis/hiredis) and [redis3m](https://github.com/luca3m/redis3m) from sources
+2. Install [hiredis](https://github.com/redis/hiredis) from sources ( redis3m is already included )
 
 ### Config
 	cp src/config.h.example.h src/config.h
