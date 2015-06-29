@@ -23,7 +23,7 @@ DEMO: https://leanclub.org/
 ### Datebase
 1. Install [Apache Couchdb](https://couchdb.apache.org/)
 2. Create 4 databases named “category” “notification” “topics” and “user”.
-3. Import design docs from “databases” directory.
+3. Import design docs from “[databases](https://github.com/typcn/LeanClub/tree/master/databases)” directory.
 
 ### Environment
 1. ```apt-get install build-essential cmake libcurl4-nss-dev libboost-all-dev redis-server libtcmalloc-minimal4 && sudo ln -s /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so```
@@ -40,7 +40,41 @@ DEMO: https://leanclub.org/
 	make
 	./leanclub
 ### Nginx
-        reverse proxy,and static folder.
+
+    server {
+        listen 80;
+        server_name leanclub.org;
+        client_max_body_size MAX_UPLOAD_SIZE;
+        root /path/to/leanclub/;
+
+        location / {
+            proxy_pass http://127.0.0.1:18080;
+            proxy_redirect off;
+            proxy_set_header X-Forwarded-For $http_x_forwarded_for;
+            proxy_set_header Host leanclub.org;
+            add_header X-XSS-Protection "1; mode=block";
+            add_header X-Frame-Options DENY;
+        }
+        	
+        # Cache the avatar (Optional) 
+        # location /info/ {
+        #    proxy_pass http://127.0.0.1:18080;
+        #    proxy_redirect off;
+        #    proxy_set_header X-Forwarded-For $http_x_forwarded_for;
+        #    proxy_set_header Host leanclub.org;
+        #    proxy_cache one;
+        #    proxy_cache_key "$request_uri";
+        #    proxy_cache_valid  200 302  120m;
+        # }
+
+        location /static/ {
+            expires 10d;
+        }
+        location /attachments/ {
+            expires 365d;
+        }
+    }   
+reverse proxy 127.0.0.1:18080 , and map the "static" and "attachments" folder.
 
 # About
 This program based on: [Crow](https://github.com/ipkn/crow)
