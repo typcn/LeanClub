@@ -1932,6 +1932,9 @@ a.st-ui-result{
 	width: 100%;
 	text-align: center;
 }
+#uploadfile img{
+	width: 80% !important;
+}
 @media screen and (max-width: 480px){
     #userinfo .actions li{
 		width: 100%;
