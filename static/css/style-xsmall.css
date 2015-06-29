@@ -19,12 +19,19 @@
 	ul.actions {
 		margin: 0 0 2em 0;
 	}
-
+		ul.actions li:first-child {
+			width: 100%;
+		}
 		ul.actions li {
-			display: block;
 			padding: 1em 0 0 0;
 			text-align: center;
-			width: 100%;
+			width: auto;
+		}
+		ul.actions li:nth-child(2n + 1){
+			float: right;
+		}
+		#uploadfile img {
+		  width: 50% !important;
 		}
 
 			ul.actions li:first-child {
