@@ -562,6 +562,33 @@ int main()
         }
     });
     
+    CROW_ROUTE(app, "/api/file/simpleUpload").methods("POST"_method)
+    ([](const crow::request& req,crow::response& res){
+        if(req.get_header_value("x-requested-with") != "XMLHttpRequest"){
+            res.code = 403;
+            res.end("Please use ajax post");
+            return;
+        }
+        std::string SESSION = GetSession(req.get_header_value("cookie"));
+        if(SESSION.length() > 0){
+            crow::json::rvalue JSON = crow::json::load(SESSION);
+            std::string uid = JSON["uid"].s();
+            std::string r = SavePostFile(req.body, uid);
+            if(r == "error"){
+                res.code = 500;
+            }else{
+                res.code = 200;
+            }
+        
+            res.end(r);
+            return;
+        }else{
+            res.code = 403;
+            res.end("Session not found");
+            return;
+        }
+    });
+    
     CROW_ROUTE(app, "/faq")
     ([](const crow::request& req,crow::response& res){
         res.add_header("Location", "/static/faq.html");

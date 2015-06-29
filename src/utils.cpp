@@ -12,6 +12,9 @@
 #include "oauth/md5.h"
 
 #include "redis3m/include/redis3m/redis3m.hpp"
+
+#include <fstream>
+#include <boost/filesystem.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/random/random_device.hpp>
 #include <boost/random/uniform_int_distribution.hpp>
@@ -93,6 +96,56 @@ std::string GetSession(std::string cookie){
         pool->put(c);
         return session;
     }
+}
+
+bool createFolder(std::string path){
+    boost::filesystem::path dir = boost::filesystem::system_complete(path);
+    if(!boost::filesystem::exists(dir)){
+        return boost::filesystem::create_directory(dir);
+    }
+    return true;
+}
+
+std::string getFileExt(std::string data){
+    if(data.find("image/jpeg") != std::string::npos){
+        return ".jpg";
+    }else if(data.find("image/png") != std::string::npos){
+        return ".png";
+    }else if(data.find("image/gif") != std::string::npos){
+        return ".gif";
+    }else if(data.find("image/jpg") != std::string::npos){
+        return ".jpg";
+    }else if(data.find("image/webp") != std::string::npos){
+        return ".webp";
+    }else if(data.find("image/x-ms-bmp") != std::string::npos){
+        return ".bmp";
+    }else if(data.find("image/tif") != std::string::npos){
+        return ".tif";
+    }else if(data.find("image/svg+xml") != std::string::npos){
+        return ".svg";
+    }else{
+        return "";
+    }
+}
+
+std::string SavePostFile(std::string postdata,std::string uid){
+    int start = postdata.find("\r\n\r\n") + 4;
+    int end = postdata.rfind("\r\n-");
+    if (start != std::string::npos && end != std::string::npos ){
+        std::string fileMeta = postdata.substr(0,200);
+        std::string fileData = postdata.substr(start,end-start);
+        if(fileData.length() > 50){
+
+            if(!createFolder("../attachments/" + uid)) return "create folder failed";
+            
+            std::string filename = std::to_string(time(0)) + randomStr(6) + getFileExt(fileMeta);
+            std::ofstream ofile("../attachments/" + uid + "/" + filename, std::ios::binary);
+            ofile.write(fileData.c_str(),fileData.length());
+            ofile.close();
+            return uid + "/" + filename;
+        }
+    }
+    return "error";
 }
 
 void UpdateOnlineCount(){

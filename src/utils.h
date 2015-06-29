@@ -11,6 +11,7 @@
 
 #include <string>
 
+std::string SavePostFile(std::string postdata,std::string uid);
 std::string randomStr(int len);
 std::string ReplaceAll(std::string str, const std::string& from, const std::string& to);
 bool string_is_valid(const std::string &str);
