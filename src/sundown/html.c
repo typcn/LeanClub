@@ -265,7 +265,7 @@ rndr_link(hoedown_buffer *ob, const hoedown_buffer *content, const hoedown_buffe
         subString (linkdata, 7, len, dest);
         dest[len+1] = '\0';
         const char *targetid = &dest[0];
-        escape_href(ob, targetid, strlen(dest));
+        escape_href(ob, (const uint8_t *)targetid, strlen(dest));
         HOEDOWN_BUFPUTSL(ob, "\"></iframe>");
         return 1;
     }else if(StartsWith(linkdata, "tvideo:")){
@@ -275,7 +275,7 @@ rndr_link(hoedown_buffer *ob, const hoedown_buffer *content, const hoedown_buffe
         subString (linkdata, 7, len, dest);
         dest[len+1] = '\0';
         const char *targetid = &dest[0];
-        escape_href(ob, targetid, strlen(dest));
+        escape_href(ob, (const uint8_t *)targetid, strlen(dest));
         HOEDOWN_BUFPUTSL(ob, "\"></iframe>");
         return 1;
     }else{
@@ -424,8 +424,8 @@ rndr_image(hoedown_buffer *ob, const hoedown_buffer *link, const hoedown_buffer 
 	hoedown_html_renderer_state *state = data->opaque;
 	if (!link || !link->size) return 0;
 
-    if(!StartsWith(link->data,"http")){
-        if(!StartsWith(link->data,"//")){
+    if(!StartsWith((const char *)link->data,"http")){
+        if(!StartsWith((const char *)link->data,"//")){
             return 0;
         }
     }
