@@ -247,10 +247,16 @@ function bindUpload(){
   });
   dzUpload.on("success",function(e){
     try{
-      var iurl = "/attachments/" + e.xhr.responseText;
+      var iurl;
+      if(window.location.origin == "https://leanclub.org"){
+        iurl = "//forum-attachments.tycdn.net/" + e.xhr.responseText;
+      }else{
+        iurl = "/attachments/" + e.xhr.responseText;
+      }
+      
       var fname = e.name;
       var mdContent;
-      if(iurl.indexOf(".") > 0){
+      if(e.xhr.responseText.indexOf(".") > 0){
         if(!fname){
           fname = "Image";
         }
@@ -590,6 +596,9 @@ function enableTopicAjax(){
       qwest.get("/static/frontend/topic.html?ver=4",null,{cache:true}).then(function(template){
         reply.categorynav = $(".menu")[0].innerHTML;
         var rendered = Mustache.render(template, reply);
+        if(window.location.origin == "https://leanclub.org"){
+          rendered = rendered.replace(/forum-attachments.tycdn.net/g, 'dn-leanclub-attachments.qbox.me');
+        }
         $(".container")[0].innerHTML = rendered;
         renderTime();
         signedBind();
