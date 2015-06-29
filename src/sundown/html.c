@@ -280,7 +280,9 @@ rndr_link(hoedown_buffer *ob, const hoedown_buffer *content, const hoedown_buffe
         return 1;
     }else{
         if(!StartsWith(linkdata, "http")){
-            return 0;
+            if(!StartsWith(linkdata, "//")){
+                return 0;
+            }
         }
         HOEDOWN_BUFPUTSL(ob, "<a target=\"_blank\" href=\"");
     }
