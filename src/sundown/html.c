@@ -258,22 +258,22 @@ rndr_link(hoedown_buffer *ob, const hoedown_buffer *content, const hoedown_buffe
     
     if(StartsWith(linkdata, "#")){
         HOEDOWN_BUFPUTSL(ob, "<a class=\"floorLink\" href=\"");
-    }else if(StartsWith(linkdata, "tmusic:")){
-        HOEDOWN_BUFPUTSL(ob, "<iframe frameborder=\"0\" onload=\"resizeFrame(this)\"allowtransparency=\"true\" allowfullscreen=\"true\" src=\"https://storage.typcn.com/player/music.html?id=");
-        int len = link->size - 7;
+    }else if(StartsWith(linkdata, "em:")){
+        HOEDOWN_BUFPUTSL(ob, "<iframe frameborder=\"0\" onload=\"resizeFrame(this)\" allowtransparency=\"true\" allowfullscreen=\"true\" src=\"https://cmplayer.b0.upaiyun.com/player/?wshost=https://wsedge.mybluemix.net/&vid=");
+        int len = link->size - 3;
         char dest[len+1];
-        subString (linkdata, 7, len, dest);
-        dest[len+1] = '\0';
+        subString (linkdata, 3, len, dest);
+        dest[len] = '\0';
         const char *targetid = &dest[0];
         escape_href(ob, (const uint8_t *)targetid, strlen(dest));
         HOEDOWN_BUFPUTSL(ob, "\"></iframe>");
         return 1;
-    }else if(StartsWith(linkdata, "tvideo:")){
-        HOEDOWN_BUFPUTSL(ob, "<iframe frameborder=\"0\" onload=\"resizeFrame(this)\"allowtransparency=\"true\" allowfullscreen=\"true\" src=\"https://storage.typcn.com/player/video.html?id=");
-        int len = link->size - 7;
+    }else if(StartsWith(linkdata, "youtube:")){
+        HOEDOWN_BUFPUTSL(ob, "<iframe frameborder=\"0\" onload=\"resizeFrame(this)\" allowtransparency=\"true\" allowfullscreen=\"true\" src=\"https://www.youtube.com/embed/");
+        int len = link->size - 8;
         char dest[len+1];
-        subString (linkdata, 7, len, dest);
-        dest[len+1] = '\0';
+        subString (linkdata, 8, len, dest);
+        dest[len] = '\0';
         const char *targetid = &dest[0];
         escape_href(ob, (const uint8_t *)targetid, strlen(dest));
         HOEDOWN_BUFPUTSL(ob, "\"></iframe>");
