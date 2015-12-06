@@ -28,7 +28,7 @@
 
 	body, input, select, textarea {
 		color: rgba(255, 255, 255, 0.75);
-		font-family: "Helvetica", "Microsoft Yahei", sans-serif;
+		font-family: "PingFangSC-Regular", "Helvetica Neue", "Microsoft Yahei", sans-serif;
 		font-size: 15pt;
 		font-weight: 100;
 		line-height: 1.75em;
