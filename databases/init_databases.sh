@@ -1,5 +1,11 @@
 #!/bin/bash
 
+
+# example:
+# chmod u+x init_databases.sh
+# ./init_databases.sh 127.0.0.1:5984
+#
+
 JSON_LIST=`ls *.json`
 
 for i in $JSON_LIST
