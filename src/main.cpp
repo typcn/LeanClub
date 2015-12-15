@@ -374,7 +374,7 @@ int main()
             return;
         }
         std::string Referer = req.get_header_value("referer");
-        if(Referer.find("https://leanclub.org/post/new") == std::string::npos){
+        if(Referer.find(WEBSITE_URL "post/new") == std::string::npos){
             res.code = 403;
             res.end("Please post on offical site");
             return;
@@ -483,7 +483,7 @@ int main()
             return;
         }
         std::string Referer = req.get_header_value("referer");
-        if(Referer.find("https://leanclub.org/topic/") == std::string::npos){
+        if(Referer.find(WEBSITE_URL "topic/") == std::string::npos){
             res.code = 403;
             res.end("Please post on offical site");
             return;
@@ -516,7 +516,7 @@ int main()
             return;
         }
         std::string Referer = req.get_header_value("referer");
-        if(Referer.find("https://leanclub.org/settings") == std::string::npos){
+        if(Referer.find(WEBSITE_URL "settings") == std::string::npos){
             res.code = 403;
             res.end("Please post on offical site");
             return;
@@ -543,7 +543,7 @@ int main()
             return;
         }
         std::string Referer = req.get_header_value("referer");
-        if(Referer.find("https://leanclub.org/settings") == std::string::npos){
+        if(Referer.find(WEBSITE_URL "settings") == std::string::npos){
             res.code = 403;
             res.end("Please post on offical site");
             return;

@@ -28,7 +28,7 @@ simple_pool::ptr_t WritePool;
 int online = -1;
 
 void InitRedisPool(){
-    pool = simple_pool::create("127.0.0.1");
+    pool = simple_pool::create(REDIS_READ_IP);
     WritePool = simple_pool::create(REDIS_MASTER_IP);
 }
 
