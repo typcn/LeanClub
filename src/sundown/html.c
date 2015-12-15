@@ -281,7 +281,9 @@ rndr_link(hoedown_buffer *ob, const hoedown_buffer *content, const hoedown_buffe
     }else{
         if(!StartsWith(linkdata, "http")){
             if(!StartsWith(linkdata, "//")){
-                return 0;
+                if(!StartsWith(linkdata, "/attachments/")){
+                    return 0;
+                }
             }
         }
         HOEDOWN_BUFPUTSL(ob, "<a target=\"_blank\" href=\"");
@@ -428,7 +430,9 @@ rndr_image(hoedown_buffer *ob, const hoedown_buffer *link, const hoedown_buffer 
 
     if(!StartsWith((const char *)link->data,"http")){
         if(!StartsWith((const char *)link->data,"//")){
-            return 0;
+            if(!StartsWith((const char *)link->data,"/attachments/")){
+                return 0;
+            }
         }
     }
     
