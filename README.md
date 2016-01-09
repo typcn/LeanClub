@@ -26,7 +26,7 @@ DEMO: https://leanclub.org/
 3. Import design docs from “[databases](https://github.com/typcn/LeanClub/tree/master/databases)” directory.
 
 ### Environment
-1. ```apt-get install build-essential cmake libcurl4-nss-dev libboost-all-dev redis-server libtcmalloc-minimal4 && sudo ln -s /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so```
+1. ```apt-get install build-essential cmake libcurl4-nss-dev libboost-all-dev redis-server libhiredis-dev libtcmalloc-minimal4 && sudo ln -s /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so```
 2. Install [hiredis](https://github.com/redis/hiredis) from sources ( redis3m is already included )
 
 ### Config
